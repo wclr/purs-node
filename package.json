@@ -1,12 +1,15 @@
 {
   "name": "purs-node",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Runs purescript output without hassle.",
   "bin": {
     "purs-node": "index.js",
     "purs-node-dev": "dev.js"
   },
-  "files": ["dev.js", "index.js"],
+  "files": [
+    "dev.js",
+    "index.js"
+  ],
   "dependencies": {
     "minimist": "^1.2.5"
   },
@@ -18,7 +21,6 @@
     "yarn": false,
     "cleanup": false,
     "test": false
-
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

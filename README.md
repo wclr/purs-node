@@ -2,7 +2,7 @@
 
 > Runs purescript output without hassle.
 
-*NB! This tool doesn't compile your purs sources. It is just a simple wrapper around node/[`node-dev`](https://github.com/fgnass/node-dev) to run compiled output in dev mode.*
+*NB! This tool doesn't compile your purs sources. It is just a simple wrapper around node/[`node-dev`](https://github.com/fgnass/node-dev) to run compiled output in dev mode. It works like [spago run](https://github.com/purescript/spago) but without compilation.*
 
 ## install
 
@@ -21,9 +21,9 @@ Options:
 - `--output` - output dir, default is `output`
 - `--fn` - function to run, default is `main`
 
-## dev mode
+## dev/watch mode
 
-You need to Install additionally:
+You need to install additionally:
 
 ```
 npm install node-dev (-g)

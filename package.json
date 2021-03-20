@@ -1,0 +1,16 @@
+{
+  "name": "purs-node",
+  "version": "0.0.1",
+  "main": "index.js",
+  "license": "MIT",
+  "bin": {
+    "purs-node": "index.js",
+    "purs-node-dev": "dev.js"
+  },
+  "dependencies": {
+    "minimist": "^1.2.5"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.35"
+  }  
+}

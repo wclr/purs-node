@@ -1,8 +1,7 @@
 {
   "name": "purs-node",
   "version": "0.0.1",
-  "main": "index.js",
-  "license": "MIT",
+  "description": "Runs purescript output without hassle.",
   "bin": {
     "purs-node": "index.js",
     "purs-node-dev": "dev.js"
@@ -11,6 +10,11 @@
     "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "@types/node": "^14.14.35"
-  }  
+    "@types/node": "^14.14.35",
+    "np": "^7.4.0"
+  },
+  "np": {
+    "yarn": false
+  },
+  "license": "MIT"
 }

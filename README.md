@@ -38,8 +38,10 @@ Dev options:
 - `--cls` - clear screen on restart, default `false`
 - `--deps` - watch node_modules dependencies, default `true` (use `--no-deps` to turn off)
 - `--poll` - for fs polling, when normal fs watching doesn't work, default `false`
-- `--node-dev`, - if you want to override our *beautiful and smart defaults* with [node-dev's native options](https://github.com/fgnass/node-dev#command-line-options), for example: `--node-dev '--clear,--respawn'`
 
+## upstream
+
+if you want to pass options upstream to `node` or `node-dev` put them after `--`.
 
 
 ## licence

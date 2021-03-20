@@ -10,6 +10,7 @@ const path = require("path")
 const args = minimist(process.argv.slice(2), {
   boolean: ["dev", "poll", "cls", "deps"],
   string: ["output", "fn", "tmp", "node-dev"],
+  "--": true,
   default: {
     deps: true,
   },
@@ -39,22 +40,17 @@ const nodeDevBin = () => {
 }
 
 const nodeDevArgs = () => {
-  if (typeof args["node-dev"] === "string") {
-    return args["node-dev"]
-      .replace(/^'/, "")
-      .replace(/'$/, "")
-      .split(",")
-      .join(" ")
-  }
-  return [
-    "--notify=false",
-    "--respawn",
-    args.poll ? "--poll" : "",
-    args.cls ? "--clear" : "",
-    args.deps ? "--deps -1" : "",
-  ]
-    .filter((_) => _)
-    .join(" ")
+  return args["--"]
+    ? args["--"].join(" ")
+    : [
+        "--notify=false",
+        "--respawn",
+        args.poll ? "--poll" : "",
+        args.cls ? "--clear" : "",
+        args.deps ? "--deps -1" : "",
+      ]
+        .filter((_) => _)
+        .join(" ")
 }
 
 const mainPath = path.join(dir, output, main, "index.js")
@@ -75,6 +71,9 @@ fs.writeFileSync(entryPath, code)
 
 const cmd = args.dev
   ? [nodeDevBin(), nodeDevArgs(), entryPath].join(" ")
-  : ["node", entryPath].join(" ")
+  : ["node"]
+      .concat(args["--"] || [])
+      .concat(entryPath)
+      .join(" ")
 
 ch.execSync(cmd, { stdio: "inherit" })

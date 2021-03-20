@@ -1,5 +1,5 @@
 #!/usr/bin/env node
 
-process.argv.push("--dev")
+process.argv.splice(2, 0, "--dev")
 
 require("./index.js")

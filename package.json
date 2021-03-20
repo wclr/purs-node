@@ -15,7 +15,10 @@
     "np": "^7.4.0"
   },
   "np": {
-    "yarn": false
+    "yarn": false,
+    "cleanup": false,
+    "test": false
+
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"

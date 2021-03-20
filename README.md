@@ -41,7 +41,7 @@ Dev options:
 
 ## upstream
 
-if you want to pass options upstream to `node` or `node-dev` put them after `--`.
+if you want to pass options upstream to `node` or [`node-dev`](https://github.com/fgnass/node-dev) put them just after `--`.
 
 
 ## licence

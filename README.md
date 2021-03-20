@@ -2,7 +2,7 @@
 
 > Runs purescript output without hassle.
 
-> NB! This tool doesn't compile your purs sources. It just a simple wrapper around node/[`node-dev`](https://github.com/fgnass/node-dev) to run compiled output in dev mode.
+*NB! This tool doesn't compile your purs sources. It just a simple wrapper around node/[`node-dev`](https://github.com/fgnass/node-dev) to run compiled output in dev mode.*
 
 ## install
 

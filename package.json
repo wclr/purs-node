@@ -17,5 +17,8 @@
   "np": {
     "yarn": false
   },
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org"
+  },
   "license": "MIT"
 }

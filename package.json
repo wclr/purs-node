@@ -6,6 +6,7 @@
     "purs-node": "index.js",
     "purs-node-dev": "dev.js"
   },
+  "files": ["dev.js", "index.js"],
   "dependencies": {
     "minimist": "^1.2.5"
   },

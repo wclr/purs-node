@@ -7,13 +7,13 @@
 ## install
 
 ```
-npm install purs-node (-g)
+npm install purs-node [-g]
 ```
 
 Run compiled `App.Main` module:
 
 ```
-purs-node App.Main
+purs-node [options] App.Main [args] -- [upstream node args]
 ```
 
 Options:
@@ -26,26 +26,26 @@ Options:
 You need to install additionally:
 
 ```
-npm install node-dev (-g)
+npm install node-dev [-g]
 ```
 
 Then run with watching for changes of required files:
 
 ```
-purs-node-dev App.Main
+"\tpurs-node-dev [options] App.Main [args] -- [node-dev args]"
 ```
 
 Dev options:
 
 - `--cls` - clear screen on restart, default `false`
-- `--deps` - watch node_modules dependencies, default `true` (use `--no-deps` to turn off)
+- `--deps` - watch `node_modules` dependencies, default `false`
 - `--poll` - for fs polling, when normal fs watching doesn't work, default `false`
 
 ## upstream
 
-if you want to pass options upstream to `node` or [`node-dev`](https://github.com/fgnass/node-dev) put them just after `--`.
+If you want to pass options upstream to `node` or [`node-dev`](https://github.com/fgnass/node-dev) put them after `---`. In case of `node-dev` it will override preset defaults.
 
 
 ## licence
 
-I LOVE MEAT.
+MEAT.

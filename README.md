@@ -13,7 +13,7 @@ npm install purs-node [-g]
 Run compiled `App.Main` module:
 
 ```
-purs-node [options] App.Main [args] -- [upstream node args]
+purs-node [options] App.Main [args] --- [node args]
 ```
 
 Options:
@@ -32,7 +32,7 @@ npm install node-dev [-g]
 Then run with watching for changes of required files:
 
 ```
-"\tpurs-node-dev [options] App.Main [args] -- [node-dev args]"
+purs-node-dev [options] App.Main [args] --- [node-dev args]
 ```
 
 Dev options:

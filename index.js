@@ -15,7 +15,7 @@ const mArgs = upstreamSplit > 0 ? argv.slice(0, upstreamSplit) : argv
 
 const args = minimist(mArgs, {
   boolean: ["dev", "poll", "cls", "deps", "help", "debug"],
-  string: ["output", "fn", "tmp", "node-dev"],
+  string: ["output", "fn", "tmp"],
   stopEarly: true,
 })
 

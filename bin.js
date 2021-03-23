@@ -1,8 +1,6 @@
 #!/usr/bin/env node
 
 const minimist = require("minimist")
-const os = require("os")
-const crypto = require("crypto")
 const fs = require("fs")
 const ch = require("child_process")
 const path = require("path")
@@ -54,9 +52,6 @@ if (args.help) {
   )
 }
 
-const getHash = (str) =>
-  crypto.createHash("md5").update(str).digest("hex").slice(0, 16)
-
 const output = args.output || "output"
 const fn = args.fn || "main"
 const main = args._[0]
@@ -93,19 +88,14 @@ if (!fs.existsSync(mainPath)) {
   logMsg(["Main module", mainPath, "not found."].join(" "))
 }
 
-const code = [
-  'require("',
-  mainPath.replace(/\\/g, "/"),
-  '").' + fn + "();",
-].join("")
+const mainPathNormalized = mainPath.replace(/\\/g, "/")
 
-const entryPath = path.join(args.tmp || os.tmpdir(), getHash(code) + ".js")
-
-fs.writeFileSync(entryPath, code)
+const entryPath = path.join(__dirname, 'run.js')
+const runArgs = [mainPathNormalized, fn, mainArgs].join(' ')
 
 const cmd = args.dev
-  ? [nodeDevBin(), nodeDevArgs(), entryPath, mainArgs].join(" ")
-  : ["node", ...upstreamArgs, entryPath, mainArgs].join(" ")
+  ? [nodeDevBin(), nodeDevArgs(), entryPath, runArgs].join(" ")
+  : ["node", ...upstreamArgs, entryPath, runArgs].join(" ")
 
 if (args.debug) {
   console.log("Running:", cmd)

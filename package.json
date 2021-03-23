@@ -3,12 +3,13 @@
   "version": "0.2.0",
   "description": "Runs purescript output without hassle.",
   "bin": {
-    "purs-node": "index.js",
+    "purs-node": "bin.js",
     "purs-node-dev": "dev.js"
   },
   "files": [
     "dev.js",
-    "index.js"
+    "bin.js",
+    "run.js"
   ],
   "dependencies": {
     "minimist": "^1.2.5"

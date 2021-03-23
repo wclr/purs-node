@@ -2,14 +2,13 @@
   "name": "purs-node",
   "version": "0.2.0",
   "description": "Runs purescript output without hassle.",
+  "repository": "https://github.com/wclr/purs-node",
   "bin": {
-    "purs-node": "bin.js",
-    "purs-node-dev": "dev.js"
+    "purs-node": "src/bin.js",
+    "purs-node-dev": "src/dev.js"
   },
   "files": [
-    "dev.js",
-    "bin.js",
-    "run.js"
+    "src"
   ],
   "dependencies": {
     "minimist": "^1.2.5"

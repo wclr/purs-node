@@ -11,19 +11,32 @@ const upstreamSplit = argv.indexOf("---")
 const upstreamArgs = upstreamSplit > 0 ? argv.slice(upstreamSplit + 1) : []
 const mArgs = upstreamSplit > 0 ? argv.slice(0, upstreamSplit) : argv
 
+const unknownFlags = []
+
 const args = minimist(mArgs, {
   boolean: ["dev", "poll", "cls", "deps", "help", "debug"],
-  string: ["output", "fn", "tmp"],
+  string: ["fn", "interval", 'debounce', "output", "tmp"],
   stopEarly: true,
+  unknown: (arg) => {
+    if (arg.startsWith("-")) {
+      unknownFlags.push(arg)
+      return false
+    }
+    return true
+  },
 })
 
-const logMsg = (msg) => {
+const exitWithMsg = (msg) => {
   console.log(msg)
   process.exit(0)
 }
 
+if (unknownFlags.length) {
+  exitWithMsg("Unknown flags: " + JSON.stringify(unknownFlags))
+}
+
 if (args.help) {
-  logMsg(
+  exitWithMsg(
     [
       "----",
       "Runs purescript compiled output files.",
@@ -57,8 +70,12 @@ const fn = args.fn || "main"
 const main = args._[0]
 const mainArgs = args._.slice(1).join(" ")
 
+if (args.debug) {
+  console.log("Args:", args)
+}
+
 if (!main) {
-  logMsg('You need to provide main purescript module like "App.Main"')
+  exitWithMsg('You need to provide main purescript module like "App.Main"')
 }
 
 const dir = process.cwd()
@@ -75,6 +92,8 @@ const nodeDevArgs = () => {
         "--notify=false",
         "--respawn",
         args.poll ? "--poll" : "",
+        args.interval ? "--interval=" + args.interval : "",
+        args.debounce ? "--debounce=" + args.debounce : "",
         args.cls ? "--clear" : "",
         args.deps ? "--deps -1" : "",
       ]
@@ -85,13 +104,13 @@ const nodeDevArgs = () => {
 const mainPath = path.join(dir, output, main, "index.js")
 
 if (!fs.existsSync(mainPath)) {
-  logMsg(["Main module", mainPath, "not found."].join(" "))
+  exitWithMsg(["Main module", mainPath, "not found."].join(" "))
 }
 
 const mainPathNormalized = mainPath.replace(/\\/g, "/")
 
-const entryPath = path.join(__dirname, 'run.js')
-const runArgs = [mainPathNormalized, fn, mainArgs].join(' ')
+const entryPath = path.join(__dirname, "run.js")
+const runArgs = [mainPathNormalized, fn, mainArgs].join(" ")
 
 const cmd = args.dev
   ? [nodeDevBin(), nodeDevArgs(), entryPath, runArgs].join(" ")

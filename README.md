@@ -40,6 +40,7 @@ Dev options:
 - `--cls` - clear screen on restart, default `false`
 - `--deps` - watch `node_modules` dependencies, default `false`
 - `--poll` - for fs polling, when normal fs watching doesn't work, default `false`
+- `--interval` - interval for polling in milliseconds (default: 1000)
 
 ## upstream
 

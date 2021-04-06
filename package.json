@@ -7,6 +7,9 @@
     "purs-node": "src/bin.js",
     "purs-node-dev": "src/dev.js"
   },
+  "scripts": {
+    "test": "echo done"
+  },
   "files": [
     "src"
   ],

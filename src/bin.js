@@ -15,7 +15,7 @@ const unknownFlags = []
 
 const args = minimist(mArgs, {
   boolean: ["dev", "poll", "cls", "deps", "help", "debug"],
-  string: ["fn", "interval", 'debounce', "output", "tmp"],
+  string: ["fn", "interval", "debounce", "output", "tmp"],
   stopEarly: true,
   unknown: (arg) => {
     if (arg.startsWith("-")) {
@@ -89,6 +89,7 @@ const nodeDevArgs = () => {
   return upstreamArgs.length
     ? upstreamArgs.join(" ")
     : [
+        !upstreamArgs.includes("--content") ? "--content=" + output : "",
         "--notify=false",
         "--respawn",
         args.poll ? "--poll" : "",

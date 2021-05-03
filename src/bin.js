@@ -15,7 +15,7 @@ const unknownFlags = []
 
 const args = minimist(mArgs, {
   boolean: ["dev", "poll", "cls", "deps", "help", "debug"],
-  string: ["fn", "interval", "debounce", "output", "tmp"],
+  string: ["fn", "interval", "debounce", "output", "script", "tmp"],
   stopEarly: true,
   unknown: (arg) => {
     if (arg.startsWith("-")) {
@@ -110,7 +110,9 @@ if (!fs.existsSync(mainPath)) {
 
 const mainPathNormalized = mainPath.replace(/\\/g, "/")
 
-const entryPath = path.join(__dirname, "run.js")
+const script = args.script ? args.script + " " : ""
+
+const entryPath = script + path.join(__dirname, "run.js")
 const runArgs = [mainPathNormalized, fn, mainArgs].join(" ")
 
 const cmd = args.dev

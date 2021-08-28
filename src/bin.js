@@ -55,6 +55,7 @@ if (args.help) {
       "--cls - clear screen on restart, default `false`",
       "--deps - watch `node_modules` dependencies, default `false`",
       "--poll - for fs polling, when normal fs watching doesn't work, default `false`",
+      "--script - run this relay script instead of directly running the target purs output module",
       "",
       "To pass options upstream options to `node` or `node-dev` put them after `---`.",
       "In case of `node-dev` it will override preset defaults.",

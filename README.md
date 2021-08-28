@@ -41,6 +41,7 @@ Dev options:
 - `--deps` - watch `node_modules` dependencies, default `false`
 - `--poll` - for fs polling, when normal fs watching doesn't work, default `false`
 - `--interval` - interval for polling in milliseconds (default: 1000)
+- `--script` - run this relay script instead of directly running the target purs output module. Absolute path to script running purs output will be passed as the first argument to the relay script, the rest arguments will follow.
 
 ## upstream
 

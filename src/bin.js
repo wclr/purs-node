@@ -14,7 +14,7 @@ const mArgs = upstreamSplit > 0 ? argv.slice(0, upstreamSplit) : argv
 const unknownFlags = []
 
 const args = minimist(mArgs, {
-  boolean: ["dev", "poll", "cls", "deps", "help", "debug"],
+  boolean: ["watch", "dev", "poll", "cls", "deps", "help", "debug", "cjs"],
   string: ["fn", "interval", "debounce", "output", "script", "tmp", "require"],
   alias: {
     require: ["r"],
@@ -60,6 +60,7 @@ if (args.help) {
       "--cls - clear screen on restart, default `false`",
       "--deps - watch `node_modules` dependencies, default `false`",
       "--poll - for fs polling, when normal fs watching doesn't work, default `false`",
+      "--cjs - to import Purescript CJS modules (for purs versions before 0.15)",
       "--script - run this relay script instead of directly running the target purs output module",
       "--require/-r - preload script/module (like node's --require) before running the target",
       "",
@@ -118,7 +119,9 @@ const nodeDevArgs = () => {
   return upstreamArgs.length
     ? upstreamArgs.join(" ")
     : [
-        !upstreamArgs.includes("--content") ? "--content=" + output : "",
+        upstreamArgs.includes("--content")
+          ? "--content=" + output
+          : "",
         "--notify=false",
         "--respawn",
         args.poll ? "--poll" : "",
@@ -141,10 +144,13 @@ const mainPathNormalized = mainPath.replace(/\\/g, "/")
 
 const script = args.script ? args.script + " " : ""
 
-const entryPath = script + path.join(__dirname, "run.js")
+const entryPath =
+  script + path.join(__dirname, args.cjs ? "run-cjs.js" : "run.js")
 const runArgs = [mainPathNormalized, fn, appArgs].join(" ")
 
-const cmd = args.dev
+const isDev = args.dev || args.watch
+
+const cmd = isDev
   ? [nodeDevBin(), nodeDevArgs(), entryPath, runArgs].join(" ")
   : [nodeWithPreload(), ...upstreamArgs, entryPath, runArgs].join(" ")
 

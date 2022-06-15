@@ -1,6 +1,6 @@
 {
   "name": "purs-node",
-  "version": "0.4.0",
+  "version": "1.0.0",
   "description": "Runs purescript output without hassle.",
   "repository": "https://github.com/wclr/purs-node",
   "bin": {
@@ -17,7 +17,7 @@
     "minimist": "^1.2.5"
   },
   "devDependencies": {
-    "@types/node": "^14.14.35",
+    "@types/node": "^17.0.40",
     "node-dev": "file:.yalc/node-dev",
     "np": "^7.4.0"
   },
